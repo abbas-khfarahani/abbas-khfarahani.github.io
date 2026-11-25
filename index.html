@@ -72,11 +72,12 @@
         <p class="role">Research assistant <span>Sep 2024 – present</span></p>
         <h3>Patient-level CIN2+ classification from colposcopy images</h3>
         <p class="advisors">Bachelor project with <a href="https://scholar.google.com/citations?user=SK_a8RsAAAAJ&amp;hl=en">Dr. Ali Haghi</a> (ECE, University of Tehran) and <a href="https://scholar.google.com/citations?user=i69Ck14AAAAJ&amp;hl=en">Dr. Fariba Yarandi</a> (Gynecologic Oncology, Tehran University of Medical Sciences).</p>
+        <p>I did the engineering on this project: assembled the modeling cohort, trained and compared the CNNs, and ran the patient-level evaluation. The clinicians led recruitment, diagnosis, and interpretation.</p>
         <p>Colposcopy is used to look for precancerous change on the cervix. The label that matters is the patient, not a single frame. I curated a histopathology-linked cohort of 492 patients and 790 acetic-acid images, including 78 CIN2+ cases (15.9%), and organized age, HPV status, and cytology. Data collection follows Swede score criteria.</p>
         <ul class="stats">
           <li>
             <strong>0.847</strong>
-            <span>Test AUROC<br>95% CI 0.730–0.944</span>
+            <span>Preliminary AUROC<br>95% CI 0.730–0.944</span>
           </li>
           <li>
             <strong>0.917</strong>
@@ -88,9 +89,9 @@
           </li>
         </ul>
         <p>For the published study, I trained convolutional networks in PyTorch to separate normal from abnormal colposcopy images. The comparison included ResNet-50, DenseNet-121, EfficientNetV2-S, MobileNetV3-Large, SE-ResNet-50, and ConvNeXt-Tiny, scored with sensitivity, specificity, PPV, and NPV.</p>
-        <p>The current model predicts CIN2+ for the patient. Two ImageNet-pretrained ResNet-50 networks read the acetic-acid images. The patient score is the maximum over that patient’s images, averaged across the two models, then combined with the clinical features. Grad-CAM provides a view of what the network used. Splits are by patient (seed 42; 350 / 75 / 75) so frames from one person cannot leak between sets. The operating threshold is chosen on validation only, and uncertainty is a bootstrap 95% confidence interval.</p>
-        <p class="note">These numbers are from an internal test cohort. External validation is still outstanding.</p>
-        <p>I am also developing the abnormality-detection module for a hospital cervical-screening registry that is still being built. The registry is meant to cover the patient workflow, imaging, follow-up, and guideline-based decision support.</p>
+        <p>I am developing a patient-level CIN2+ pipeline: ImageNet-pretrained ResNet-50 ensembles, aggregation across the images from each patient, late fusion with age, HPV, and cytology, and Grad-CAM. Splits are by patient (seed 42; 350 / 75 / 75) so frames from one person cannot leak between sets. The operating threshold is chosen on validation only, and uncertainty is a bootstrap 95% confidence interval.</p>
+        <p class="note">The test numbers above are preliminary and come from an internal cohort. External validation is still outstanding.</p>
+        <p>I am also developing an abnormality-detection module for a hospital cervical-screening registry. It is meant to support the patient workflow, colposcopy imaging, follow-up, and guideline-based decision support.</p>
         <p class="code-links">
           <a href="https://github.com/abbas-khfarahani/cin2-colposcopy">Project notes</a>
           <a href="https://github.com/abbas-khfarahani/colposcopy-cin2">Training code</a>
@@ -101,6 +102,7 @@
         <h2>Publication</h2>
         <article class="paper">
           <p>F. Yarandi, E. Feizabad, E. Shirali, S. Ramhormozian, A. Haghi, <strong>A. Khoshdooni Farahani</strong>, A. H. Rahmani, and A. H. Nikusakhan. “Enhancing cervical cancer screening in low-resource settings: a deep learning-based decision support system using colposcopic images.” <em>Tehran University Medical Journal</em>, vol. 83, no. 12, pp. 848–855, March 2026.</p>
+          <p class="note">Engineering author, listed directly after Dr. Haghi. The earlier authors are the clinicians. I built the modeling cohort, trained and compared the CNNs, and ran the reported evaluation.</p>
           <p><a href="https://tumj.tums.ac.ir/article-1-13935-fa.html">Read the paper</a></p>
         </article>
       </section>
@@ -137,12 +139,12 @@
       <section id="courses">
         <h2>Selected courses</h2>
         <ul class="grades">
-          <li><span>Fundamentals of Computer Vision</span><strong>20</strong></li>
+          <li><span>Computer Vision</span><strong>20</strong></li>
           <li><span>Engineering Probability</span><strong>20</strong></li>
           <li><span>Engineering Mathematics</span><strong>19.25</strong></li>
-          <li><span>Graduate: Deep Learning and Neural Networks</span><strong>18.53</strong></li>
+          <li><span>Deep Learning and Neural Networks</span><strong>18.53</strong></li>
           <li><span>Antenna I</span><strong>18</strong></li>
-          <li><span>Graduate: Generative Models</span><strong>17.6</strong></li>
+          <li><span>Generative Models</span><strong>17.6</strong></li>
           <li><span>Digital Signal Processing</span><strong>17.6</strong></li>
           <li><span>Advanced Programming</span><strong>17.15</strong></li>
         </ul>
@@ -150,31 +152,19 @@
       </section>
 
       <section id="coursework">
-        <h2>Coursework online</h2>
+        <h2>Selected course projects</h2>
         <ul class="repos">
           <li>
-            <a href="https://github.com/abbas-khfarahani/computer-vision">Computer vision</a>
-            <p>Image processing, CAPTCHA segmentation, detection, scene classification, and photo restoration.</p>
+            <a href="https://github.com/abbas-khfarahani/deep-generative-models">Deep generative models</a>
+            <p>VAEs and β-VAEs on dSprites, a masked autoregressive flow for anomaly detection on MVTec, and a CycleGAN for horse–zebra translation. Energy-based models and noise-conditional score networks on MNIST, DDPM compared with DDIM on FashionMNIST, and conditional flow matching on SPY log returns.</p>
           </li>
           <li>
             <a href="https://github.com/abbas-khfarahani/neural-networks-deep-learning">Neural networks and deep learning</a>
-            <p>Vision, detection, sequences, re-identification, VAEs, and GANs.</p>
+            <p>Adaline and Madaline from scratch. An Xception network fine-tuned for remote-sensing scenes, at 93.1% validation accuracy. An improved Fast R-CNN for vehicle detection, CNN-LSTM and GRU models for stock prices, and a VampPrior VAE on binarized MNIST.</p>
           </li>
           <li>
-            <a href="https://github.com/abbas-khfarahani/deep-generative-models">Deep generative models</a>
-            <p>Graphical models, flows, CycleGAN, diffusion, and flow matching.</p>
-          </li>
-          <li>
-            <a href="https://github.com/abbas-khfarahani/dsp-lab">Digital signal processing lab</a>
-            <p>Bandpass sampling, an FM receiver, and FIR filter design.</p>
-          </li>
-          <li>
-            <a href="https://github.com/abbas-khfarahani/wireless-communications">Wireless communications</a>
-            <p>An OFDM link with QPSK and DPSK, AWGN and Rayleigh channels, and frame synchronization.</p>
-          </li>
-          <li>
-            <a href="https://github.com/abbas-khfarahani/c-band-horn-antenna">C-band horn antenna</a>
-            <p>A pyramidal horn simulated in Ansys HFSS.</p>
+            <a href="https://github.com/abbas-khfarahani/computer-vision">Fundamentals of computer vision</a>
+            <p>Convolution, histogram equalization, and median filtering, a Haar cascade for cat faces, and colorization with a convolutional autoencoder in Lab. A scene-classification CNN at 82.2% test accuracy, and a U-Net for photograph restoration at 22.99 dB PSNR and 0.863 SSIM.</p>
           </li>
         </ul>
       </section>
@@ -191,16 +181,16 @@
             <dd>PyTorch, torchvision</dd>
           </div>
           <div>
-            <dt>Vision and scientific computing</dt>
+            <dt>Computer vision</dt>
             <dd>OpenCV, Pillow, NumPy, SciPy, pandas, scikit-learn, Matplotlib</dd>
           </div>
           <div>
             <dt>Tools</dt>
-            <dd>Git, Linux, Conda, CUDA</dd>
+            <dd>Git, Linux/WSL, Conda, CUDA, openpyxl</dd>
           </div>
           <div>
             <dt>Languages</dt>
-            <dd>Persian, native. English, professional working proficiency.</dd>
+            <dd>Persian, native. English, professional working proficiency. IELTS forthcoming.</dd>
           </div>
         </dl>
       </section>
